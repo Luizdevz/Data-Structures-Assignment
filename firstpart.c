@@ -81,3 +81,33 @@ int validar_ord(const int *vetor, int n)
     }
     return 1;
 }
+
+int main()
+{
+    srand(42);
+
+    int tamanhos[] = {100, 1000, 10000, 100000, 1000000};
+    int num_tamanhos = sizeof(tamanhos) / sizeof(tamanhos[0]);
+
+    int n = tamanhos[0];
+    int *vetor_original = (int *)malloc(n * sizeof(int));
+
+    printf("A gerar vetor aleatorio com %d elementos...\n", n);
+    gerar_aleatorio(vetor_original, n);
+
+    int *vetor_para_teste = copiar_vetor(vetor_original, n);
+
+    if (validar_ordenacao(vetor_para_teste, n))
+    {
+        printf("Validacao: O vetor foi ordenado com sucesso!\n");
+    }
+    else
+    {
+        printf("Validacao: Erro! O vetor nao esta ordenado.\n");
+    }
+
+    free(vetor_para_teste);
+    free(vetor_original);
+
+    return 0;
+}
