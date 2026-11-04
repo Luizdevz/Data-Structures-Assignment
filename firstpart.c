@@ -1,0 +1,83 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+/* O objetivo é investigar experimentalmente o comportamento dos algoritmos
+BubbleSort, QuickSort, MergeSort e HeapSort; em diferentes cenários de
+entrada, analisando desempenho, escalabilidade, consumo de recursos e
+características dos algoritmos
+*/
+
+// Implementação vetores
+
+void gera_aleatorio(int *vetor, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        vetor[i] += i;
+    }
+    for (int i = n - 1; i > 0; i--)
+    {
+        int j = rand() % (i + 1);
+        int temp = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = temp;
+    }
+}
+
+void gera_crescente(int *vetor, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        vetor[i] += i;
+    }
+}
+
+void gera_decrescente(int *vetor, int n)
+{
+    for (int i = n - 1; i > 0; i--)
+    {
+        vetor[i] += i;
+    }
+}
+
+void gera_alliguais(int *vetor, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        vetor[i] = 67;
+    }
+}
+
+void gera_poucosiguais(int *vetor, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        vetor[i] = rand() % 10;
+    }
+}
+
+// Entrada
+
+int *copiar_vetor(const int *origem, int n)
+{
+    int *copia = (int *)malloc(n * sizeof(int));
+    if (copia != NULL)
+    {
+        memcpy(copia, origem, n * sizeof(int));
+    }
+    return copia;
+}
+
+int validar_ord(const int *vetor, int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (vetor[i] > vetor[i + 1])
+        {
+            return 0; // nao ordenado
+        }
+    }
+    return 1;
+}
