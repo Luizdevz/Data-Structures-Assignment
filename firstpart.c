@@ -15,8 +15,9 @@ void gera_aleatorio(int *vetor, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        vetor[i] += i;
+        vetor[i] = i + 1; // Substituído += por = (evita lixo de memória)
     }
+    // Embaralha usando Fisher-Yates
     for (int i = n - 1; i > 0; i--)
     {
         int j = rand() % (i + 1);
@@ -30,15 +31,15 @@ void gera_crescente(int *vetor, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        vetor[i] += i;
+        vetor[i] = i + 1; // Substituído += por =
     }
 }
 
 void gera_decrescente(int *vetor, int n)
 {
-    for (int i = n - 1; i > 0; i--)
+    for (int i = 0; i < n; i++)
     {
-        vetor[i] += i;
+        vetor[i] = n - i; // Lógica corrigida para não pular o índice 0 e gerar ordem reversa
     }
 }
 
@@ -93,11 +94,13 @@ int main()
     int *vetor_original = (int *)malloc(n * sizeof(int));
 
     printf("A gerar vetor aleatorio com %d elementos...\n", n);
-    gerar_aleatorio(vetor_original, n);
+    gera_aleatorio(vetor_original, n);
 
     int *vetor_para_teste = copiar_vetor(vetor_original, n);
 
-    if (validar_ordenacao(vetor_para_teste, n))
+    // Como o vetor gerado é aleatório e ainda não passamos nenhum algoritmo
+    // de ordenação, a validação abaixo deve cair no "Erro!" intencionalmente.
+    if (validar_ord(vetor_para_teste, n))
     {
         printf("Validacao: O vetor foi ordenado com sucesso!\n");
     }
