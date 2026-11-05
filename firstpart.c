@@ -15,7 +15,7 @@ void gera_aleatorio(int *vetor, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        vetor[i] = i + 1; // Substituído += por = (evita lixo de memória)
+        vetor[i] = i + 1; 
     }
     // Embaralha usando Fisher-Yates
     for (int i = n - 1; i > 0; i--)
@@ -31,7 +31,7 @@ void gera_crescente(int *vetor, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        vetor[i] = i + 1; // Substituído += por =
+        vetor[i] = i + 1; 
     }
 }
 
@@ -39,7 +39,7 @@ void gera_decrescente(int *vetor, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        vetor[i] = n - i; // Lógica corrigida para não pular o índice 0 e gerar ordem reversa
+        vetor[i] = n - i; 
     }
 }
 
